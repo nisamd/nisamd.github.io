@@ -1,5 +1,6 @@
-{{- /* Context: dict "page" <page> "class" <css class> */ -}}
-{{- with .page.GetTerms "tags" }}
+{{- /* Context: dict "page" <page> "class" <css class>. Posts use tags, projects use topics. */ -}}
+{{- $tax := cond (eq .page.Section "projects") "topics" "tags" }}
+{{- with .page.GetTerms $tax }}
 <ul class="{{ $.class }}">
   {{- range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}
 </ul>

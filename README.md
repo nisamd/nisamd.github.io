@@ -30,7 +30,15 @@ This copies `archetypes/blog.md`. Fill in the title, description, and tags, writ
 
 The sample post `content/blog/writing-math-and-code/` is a draft that shows all of the above. Delete it when you no longer need it.
 
-Other pages: `content/_index.md` (home intro; the greeting and headline are in its front matter), `content/about.md`, `content/projects.md`, `content/blog/_index.md` (writing page intro).
+Each project is its own page too:
+
+```sh
+hugo new content projects/my-project.md
+```
+
+This copies `archetypes/projects.md`. Projects use `topics` instead of `tags` (so their filter chips only list projects) and an optional `repo` link shown under the title. They are listed newest first by `date`.
+
+Other pages: `content/_index.md` (home intro; the greeting and headline are in its front matter), `content/about.md`, `content/projects/_index.md` (projects page intro), `content/blog/_index.md` (writing page intro).
 
 ## Layout
 

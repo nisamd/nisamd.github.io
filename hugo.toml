@@ -12,12 +12,18 @@ capitalizeListTitles = false
   # Comments stay off until repoId and categoryId are filled in (see README).
   [params.giscus]
     repo = "nisamd/nisamd.github.io"
-    repoId = ""
-    category = ""
-    categoryId = ""
+    repoId = "R_kgDOVtFqzQ"
+    category = "Announcements"
+    categoryId = "DIC_kwDOVtFqzc4DLEEO"
 
 [taxonomies]
-  tag = "tags"
+  tag = "tags"      # blog posts
+  topic = "topics"  # projects
+
+[permalinks.taxonomy]
+  topics = "/projects/topics/"
+[permalinks.term]
+  topics = "/projects/topics/:slug/"
 
 [outputs]
   home = ["html"]

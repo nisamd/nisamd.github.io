@@ -4,6 +4,9 @@
   <div class="intro">{{ .Content }}</div>
 </header>
 {{ partial "tag-filter.html" . }}
+{{ if eq .Section "projects" }}
+{{ range .Pages }}{{ partial "post-card.html" (dict "page" .) }}{{ else }}<p class="empty">No projects yet.</p>{{ end }}
+{{ else }}
 {{ range .Pages.GroupByDate "2006" }}
 <section class="year">
   <h2 class="year-label">{{ .Key }}</h2>
@@ -11,5 +14,6 @@
 </section>
 {{ else }}
 <p class="empty">No posts yet.</p>
+{{ end }}
 {{ end }}
 {{ end }}

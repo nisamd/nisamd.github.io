@@ -1,14 +1,17 @@
-{{ define "main-class" }}{{ if eq .Section "blog" }}container-wide{{ else }}container{{ end }}{{ end }}
+{{ define "main-class" }}{{ if in (slice "blog" "projects") .Section }}container-wide{{ else }}container{{ end }}{{ end }}
 
 {{ define "main" }}
-{{ if eq .Section "blog" }}
+{{ if in (slice "blog" "projects") .Section }}
 {{ $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
 <div class="post-layout{{ if $toc }} has-toc{{ end }}">
   <article class="post">
-    {{ with .Parent }}<a class="back" href="{{ .RelPermalink }}">‹ All writing</a>{{ end }}
+    {{ with .Parent }}<a class="back" href="{{ .RelPermalink }}">‹ All {{ cond (eq $.Section "projects") "projects" "writing" }}</a>{{ end }}
     <p class="meta">{{ partial "post-meta.html" . }}</p>
     <h1>{{ .Title }}</h1>
-    {{ partial "tags.html" (dict "page" . "class" "tags tags-accent") }}
+    <div class="post-links">
+      {{ partial "tags.html" (dict "page" . "class" "tags tags-accent") }}
+      {{ with .Params.repo }}<a class="repo" href="{{ . }}">source on GitHub ↗</a>{{ end }}
+    </div>
     {{ if $toc }}
     <details class="toc toc-inline">
       <summary>Contents</summary>

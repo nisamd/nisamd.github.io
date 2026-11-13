@@ -1,6 +1,6 @@
 {{ define "main" }}
 <header class="page-head">
-  <h1>Tags</h1>
+  <h1>{{ cond (eq .Data.Plural "topics") "Project topics" "Tags" }}</h1>
 </header>
 {{ partial "tag-filter.html" . }}
 {{ end }}

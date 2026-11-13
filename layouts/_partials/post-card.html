@@ -1,13 +1,15 @@
-{{- /* Context: dict "page" <page> "number" <optional int> */ -}}
+{{- /* Context: dict "page" <page> "number" <optional int>. Projects get a dot, mono title and chevron. */ -}}
 {{- $p := .page }}
-<article class="card">
+{{- $project := eq $p.Section "projects" }}
+<article class="card{{ if $project }} card-project{{ end }}">
   {{ with .number }}<span class="card-number">{{ printf "%02d" . }}</span>{{ end }}
   <div class="card-body">
-    <h3 class="card-title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <h3 class="card-title">{{ if $project }}<span class="dot" aria-hidden="true"></span>{{ end }}<a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
     <p class="card-desc">{{ with $p.Description }}{{ . }}{{ else }}{{ $p.Summary | plainify | truncate 160 }}{{ end }}</p>
     <div class="card-footer">
       {{ partial "tags.html" (dict "page" $p "class" "tags tags-small") }}
       <span class="meta">{{ partial "post-meta.html" $p }}</span>
     </div>
   </div>
+  {{ if $project }}<span class="chev" aria-hidden="true">›</span>{{ end }}
 </article>

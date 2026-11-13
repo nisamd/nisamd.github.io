@@ -1,7 +1,8 @@
 {{ define "main" }}
+{{ $noun := cond (eq .Data.Plural "topics") "project" "post" }}
 <header class="page-head">
   <h1>#{{ .Title }}</h1>
-  <p class="intro">{{ len .Pages }} post{{ if ne (len .Pages) 1 }}s{{ end }} tagged #{{ .Title }}.</p>
+  <p class="intro">{{ len .Pages }} {{ $noun }}{{ if ne (len .Pages) 1 }}s{{ end }} tagged #{{ .Title }}.</p>
 </header>
 {{ partial "tag-filter.html" . }}
 {{ range .Pages }}{{ partial "post-card.html" (dict "page" .) }}{{ end }}

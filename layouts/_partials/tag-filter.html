@@ -1,9 +1,12 @@
-{{- /* Context: the current page. Chips for every tag; highlights the current one. */ -}}
+{{- /* Context: the current page. Chips for every tag (or project topic); highlights the current one. */ -}}
 {{- $current := . }}
-{{- with site.Taxonomies.tags }}
+{{- $projects := or (eq .Section "projects") (eq .Data.Plural "topics") }}
+{{- $terms := cond $projects site.Taxonomies.topics site.Taxonomies.tags }}
+{{- $list := site.GetPage (cond $projects "/projects" "/blog") }}
+{{- with $terms }}
 <ul class="chips">
-  {{- with site.GetPage "/blog" }}
-  <li><a href="{{ .RelPermalink }}"{{ if eq $current.Kind "section" }} aria-current="page"{{ end }}>all posts</a></li>
+  {{- with $list }}
+  <li><a href="{{ .RelPermalink }}"{{ if eq $current.Kind "section" }} aria-current="page"{{ end }}>all {{ cond $projects "projects" "posts" }}</a></li>
   {{- end }}
   {{- range .ByCount }}
   <li><a href="{{ .Page.RelPermalink }}"{{ if eq $current .Page }} aria-current="page"{{ end }}>#{{ .Page.LinkTitle }}</a></li>

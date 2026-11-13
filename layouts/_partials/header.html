@@ -1,10 +1,11 @@
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="{{ "/" | relURL }}"><span class="brand-mark" aria-hidden="true">n</span>nima samadi</a>
+    <a class="brand" href="{{ "/" | relURL }}">{{ partial "logo.html" . }}nima samadi</a>
     <nav class="site-nav" aria-label="Site">
       {{ $current := . }}
       {{ range site.Menus.main }}
-      {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+      {{ $tagged := index (dict "tags" "writing" "topics" "projects") ($current.Data.Plural | default "") }}
+      {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) (eq $tagged .Name) }}
       <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{ end }}
     </nav>
