@@ -1,0 +1,58 @@
+baseURL = "https://nisamd.github.io/"
+locale = "en"
+title = "Nima Samadi"
+enableRobotsTXT = true
+capitalizeListTitles = false
+
+[params]
+  description = "Notes on machine learning, reinforcement learning, computer systems, and things learned along the way."
+  author = "Nima Samadi"
+  github = "https://github.com/nisamd"
+
+  # Comments stay off until repoId and categoryId are filled in (see README).
+  [params.giscus]
+    repo = "nisamd/nisamd.github.io"
+    repoId = ""
+    category = ""
+    categoryId = ""
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["html"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[[menus.main]]
+  name = "home"
+  pageRef = "/"
+  weight = 1
+[[menus.main]]
+  name = "writing"
+  pageRef = "/blog"
+  weight = 2
+[[menus.main]]
+  name = "projects"
+  pageRef = "/projects"
+  weight = 3
+[[menus.main]]
+  name = "about"
+  pageRef = "/about"
+  weight = 4
+
+[markup]
+  [markup.highlight]
+    noClasses = true
+    style = "nord"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [["$$", "$$"], ["\\[", "\\]"]]
+      inline = [["$", "$"], ["\\(", "\\)"]]

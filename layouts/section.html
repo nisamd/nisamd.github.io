@@ -1,0 +1,15 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  <div class="intro">{{ .Content }}</div>
+</header>
+{{ partial "tag-filter.html" . }}
+{{ range .Pages.GroupByDate "2006" }}
+<section class="year">
+  <h2 class="year-label">{{ .Key }}</h2>
+  {{ range .Pages }}{{ partial "post-card.html" (dict "page" .) }}{{ end }}
+</section>
+{{ else }}
+<p class="empty">No posts yet.</p>
+{{ end }}
+{{ end }}

@@ -1,0 +1,13 @@
+{{- /* Context: dict "page" <page> "number" <optional int> */ -}}
+{{- $p := .page }}
+<article class="card">
+  {{ with .number }}<span class="card-number">{{ printf "%02d" . }}</span>{{ end }}
+  <div class="card-body">
+    <h3 class="card-title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p class="card-desc">{{ with $p.Description }}{{ . }}{{ else }}{{ $p.Summary | plainify | truncate 160 }}{{ end }}</p>
+    <div class="card-footer">
+      {{ partial "tags.html" (dict "page" $p "class" "tags tags-small") }}
+      <span class="meta">{{ partial "post-meta.html" $p }}</span>
+    </div>
+  </div>
+</article>

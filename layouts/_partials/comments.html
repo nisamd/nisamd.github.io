@@ -1,0 +1,18 @@
+{{- /* Giscus loads only when configured in hugo.toml and the post doesn't set comments: false. */ -}}
+{{- $g := site.Params.giscus }}
+{{- if and $g.repoId $g.categoryId (ne .Params.comments false) }}
+<section class="comments" aria-label="Comments">
+  <div id="giscus"
+    data-repo="{{ $g.repo }}"
+    data-repo-id="{{ $g.repoId }}"
+    data-category="{{ $g.category }}"
+    data-category-id="{{ $g.categoryId }}"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-lang="en"
+    data-loading="lazy"></div>
+</section>
+{{- end }}

@@ -1,0 +1,12 @@
+{{- /* Context: the current page. Chips for every tag; highlights the current one. */ -}}
+{{- $current := . }}
+{{- with site.Taxonomies.tags }}
+<ul class="chips">
+  {{- with site.GetPage "/blog" }}
+  <li><a href="{{ .RelPermalink }}"{{ if eq $current.Kind "section" }} aria-current="page"{{ end }}>all posts</a></li>
+  {{- end }}
+  {{- range .ByCount }}
+  <li><a href="{{ .Page.RelPermalink }}"{{ if eq $current .Page }} aria-current="page"{{ end }}>#{{ .Page.LinkTitle }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}

@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© {{ now.Year }} {{ site.Params.author }}</span>
+    <span class="footer-links">
+      <a href="{{ site.Params.github }}">github</a>
+      {{ with site.GetPage "/blog" }}{{ with .OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">rss</a>{{ end }}{{ end }}
+    </span>
+  </div>
+</footer>

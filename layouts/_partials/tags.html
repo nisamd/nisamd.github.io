@@ -1,0 +1,6 @@
+{{- /* Context: dict "page" <page> "class" <css class> */ -}}
+{{- with .page.GetTerms "tags" }}
+<ul class="{{ $.class }}">
+  {{- range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}
+</ul>
+{{- end }}

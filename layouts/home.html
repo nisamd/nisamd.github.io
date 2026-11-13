@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "blog" }}
+<section class="hero">
+  {{ with .Params.greeting }}<p class="greeting">{{ . }}</p>{{ end }}
+  <h1>{{ .Params.headline | default .Title }}</h1>
+  <div class="intro">{{ .Content }}</div>
+  <p class="actions">
+    {{ with site.GetPage "/blog" }}
+    <a class="button button-primary" href="{{ .RelPermalink }}">Read the writing →</a>
+    {{ with .OutputFormats.Get "rss" }}<a class="button" href="{{ .RelPermalink }}">Subscribe via RSS</a>{{ end }}
+    {{ end }}
+  </p>
+</section>
+
+<section class="latest">
+  <div class="section-head">
+    <h2 class="label">Latest posts</h2>
+    {{ with site.GetPage "/blog" }}{{ if $posts }}<a href="{{ .RelPermalink }}">See all {{ len $posts }} →</a>{{ end }}{{ end }}
+  </div>
+  {{ range $i, $p := first 5 $posts }}
+  {{ partial "post-card.html" (dict "page" $p "number" (add $i 1)) }}
+  {{ else }}
+  <p class="empty">No posts yet.</p>
+  {{ end }}
+</section>
+{{ end }}

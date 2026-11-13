@@ -1,0 +1,34 @@
+{{ define "main-class" }}{{ if eq .Section "blog" }}container-wide{{ else }}container{{ end }}{{ end }}
+
+{{ define "main" }}
+{{ if eq .Section "blog" }}
+{{ $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
+<div class="post-layout{{ if $toc }} has-toc{{ end }}">
+  <article class="post">
+    {{ with .Parent }}<a class="back" href="{{ .RelPermalink }}">‹ All writing</a>{{ end }}
+    <p class="meta">{{ partial "post-meta.html" . }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ partial "tags.html" (dict "page" . "class" "tags tags-accent") }}
+    {{ if $toc }}
+    <details class="toc toc-inline">
+      <summary>Contents</summary>
+      {{ .TableOfContents }}
+    </details>
+    {{ end }}
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "comments.html" . }}
+  </article>
+  {{ if $toc }}
+  <aside class="toc toc-side" aria-label="Table of contents">
+    <p class="label">Contents</p>
+    {{ .TableOfContents }}
+  </aside>
+  {{ end }}
+</div>
+{{ else }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ end }}
+{{ end }}
