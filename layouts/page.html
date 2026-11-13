@@ -5,7 +5,7 @@
 {{ $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
 <div class="post-layout{{ if $toc }} has-toc{{ end }}">
   <article class="post">
-    {{ with .Parent }}<a class="back" href="{{ .RelPermalink }}">‹ All {{ cond (eq $.Section "projects") "projects" "writing" }}</a>{{ end }}
+    {{ with .Parent }}<a class="back" href="{{ .RelPermalink }}">‹ All {{ cond (eq $.Section "projects") "projects" "posts" }}</a>{{ end }}
     <p class="meta">{{ partial "post-meta.html" . }}</p>
     <h1>{{ .Title }}</h1>
     <div class="post-links">

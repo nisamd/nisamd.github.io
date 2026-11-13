@@ -6,7 +6,7 @@
   <div class="intro">{{ .Content }}</div>
   <p class="actions">
     {{ with site.GetPage "/blog" }}
-    <a class="button button-primary" href="{{ .RelPermalink }}">Read the writing →</a>
+    <a class="button button-primary" href="{{ .RelPermalink }}">Read the blog →</a>
     {{ with .OutputFormats.Get "rss" }}<a class="button" href="{{ .RelPermalink }}">Subscribe via RSS</a>{{ end }}
     {{ end }}
   </p>

@@ -4,7 +4,7 @@
     <nav class="site-nav" aria-label="Site">
       {{ $current := . }}
       {{ range site.Menus.main }}
-      {{ $tagged := index (dict "tags" "writing" "topics" "projects") ($current.Data.Plural | default "") }}
+      {{ $tagged := index (dict "tags" "blog" "topics" "projects") ($current.Data.Plural | default "") }}
       {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) (eq $tagged .Name) }}
       <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{ end }}

@@ -38,7 +38,7 @@ hugo new content projects/my-project.md
 
 This copies `archetypes/projects.md`. Projects use `topics` instead of `tags` (so their filter chips only list projects) and an optional `repo` link shown under the title. They are listed newest first by `date`.
 
-Other pages: `content/_index.md` (home intro; the greeting and headline are in its front matter), `content/about.md`, `content/projects/_index.md` (projects page intro), `content/blog/_index.md` (writing page intro).
+Other pages: `content/_index.md` (home intro; the greeting and headline are in its front matter), `content/about.md`, `content/projects/_index.md` (projects page intro), `content/blog/_index.md` (blog page intro).
 
 ## Layout
 

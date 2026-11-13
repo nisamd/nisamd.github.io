@@ -1,5 +1,5 @@
 ---
-title: Writing
+title: Blog
 description: "Notes and articles on research, programming, systems, and life."
 ---
 
