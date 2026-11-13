@@ -23,6 +23,11 @@
 {{ if .Store.Get "hasMath" }}
 <link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL }}">
 {{ end }}
+{{ if and hugo.IsProduction site.Params.goatcounter }}
+{{ with resources.Get "js/goatcounter.js" | minify | fingerprint }}
+<script data-goatcounter="https://{{ site.Params.goatcounter }}.goatcounter.com/count" async src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+{{ end }}
+{{ end }}
 {{ $css := slice (resources.Get "css/main.css") (resources.Get "css/syntax.css") | resources.Concat "css/site.css" }}
 {{ with $css | minify | fingerprint }}
 <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">

@@ -65,6 +65,10 @@ Comments are off until GitHub is configured. On `nisamd/nisamd.github.io`, enabl
 
 Comments then appear under every blog post, using the post's path to find its discussion, and follow the site's light/dark theme. Add `comments: false` to a post's front matter to turn them off for that post. Renaming a post's folder later detaches its existing discussion.
 
+## Visit stats (GoatCounter)
+
+Page views are counted by [GoatCounter](https://nisamd.goatcounter.com) (no cookies). The script is a copy of the official `count.js` in `assets/js/goatcounter.js` and only runs on the published site, not with `hugo server`. To stop counting your own visits, open https://nisamd.github.io/#toggle-goatcounter once in each browser you use. Remove `goatcounter` from `hugo.toml` to turn it off.
+
 ## Public résumé
 
 `public-resume/` contains only the sanitized public LaTeX; the built PDF is `static/nima-samadi-resume.pdf`, linked from About. The original `resume/` folder is private and ignored by Git. Never force-add it.

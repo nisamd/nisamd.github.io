@@ -10,6 +10,7 @@ capitalizeListTitles = false
   github = "https://github.com/nisamd"
   twitter = "https://x.com/NimaNotFound"
   email = "nbr.smd@gmail.com"
+  goatcounter = "nisamd"  # visit stats at https://nisamd.goatcounter.com; counted only on the published site
 
   [params.social]
     twitter = "NimaNotFound"  # twitter:site in link previews
