@@ -1,9 +1,11 @@
 ---
-title: "A small notebook on discounted returns"
-description: "A sample post showing math, code, tables, footnotes, and the table of contents."
+title: A small notebook on discounted returns
+description: A sample post showing math, code, tables, footnotes, and the table of contents.
 date: 2026-11-13
-tags: [research, rl]
-draft: false
+tags:
+  - research
+  - rl
+draft: true
 ---
 
 This is a sample post for checking how writing looks on the site. It is a draft, so it is not published. Delete it or remove `draft: true` when you no longer need it.

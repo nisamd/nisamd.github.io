@@ -6,4 +6,4 @@ topics: [python, game-theory]
 repo: https://github.com/NimaSamadi007/GameTheoryProject
 ---
 
-An implementation of the deferred acceptance algorithm for a patient–hospital matching scenario.
+An implementation of the deferred acceptance algorithm for a patient–hospital matching scenario. This was my project for the Game Theory course.

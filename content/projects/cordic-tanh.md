@@ -6,4 +6,4 @@ topics: [verilog, fpga]
 repo: https://github.com/NimaSamadi007/cordic_tanh
 ---
 
-An implementation of the hyperbolic tangent using the CORDIC algorithm on FPGAs.
+An implementation of the hyperbolic tangent using the CORDIC algorithm on FPGAs. An interesting assignment I did for my FPGA course.
