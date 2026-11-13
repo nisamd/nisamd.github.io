@@ -3,6 +3,8 @@
     <span>© {{ now.Year }} {{ site.Params.author }}</span>
     <span class="footer-links">
       <a href="{{ site.Params.github }}">github</a>
+      {{ with site.Params.twitter }}<a href="{{ . }}">twitter</a>{{ end }}
+      {{ with site.Params.email }}<a href="mailto:{{ . }}">email</a>{{ end }}
       {{ with site.GetPage "/blog" }}{{ with .OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">rss</a>{{ end }}{{ end }}
     </span>
   </div>

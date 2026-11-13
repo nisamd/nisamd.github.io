@@ -12,11 +12,9 @@
   --accent: #0e7c74;
   --accent-ink: #ffffff;
   --accent-soft: rgba(14, 124, 116, .1);
-  --code-bg: #1e272b;
+  --code-bg: #e9eeec;
   --inline-code-bg: #e5eae8;
   color-scheme: light;
-
-  --reading-size: 18px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -48,8 +46,10 @@
   --inline-code-bg: #1f2a2e;
   color-scheme: dark;
 }
-:root[data-size="small"] { --reading-size: 16px; }
-:root[data-size="large"] { --reading-size: 20px; }
+/* Text size buttons scale every rem on the site; 100% respects the browser's own setting. */
+:root { font-size: 100%; }
+:root[data-size="small"] { font-size: 88.89%; }
+:root[data-size="large"] { font-size: 111.11%; }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -61,7 +61,7 @@ body {
   flex-direction: column;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.6 var(--sans);
+  font: 1rem/1.6 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 main { flex: 1; width: 100%; padding-block: 3.5rem 4rem; }
@@ -148,7 +148,7 @@ h1 { font-size: 2.4rem; margin: 0 0 1rem; }
 
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--border); color: var(--faint); font: .8rem var(--mono); }
-.footer-inner { display: flex; justify-content: space-between; padding-block: 24px; }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; padding-block: 24px; }
 .footer-links { display: flex; gap: 18px; }
 .footer-links a { color: var(--muted); text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
@@ -278,7 +278,7 @@ h1 { font-size: 2.4rem; margin: 0 0 1rem; }
 .comments { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
 
 /* ---------- Prose ---------- */
-.prose { font-size: var(--reading-size); line-height: 1.75; overflow-wrap: break-word; }
+.prose { font-size: 1.125rem; line-height: 1.75; overflow-wrap: break-word; }
 .prose > :first-child { margin-top: 0; }
 .prose p, .prose ul, .prose ol, .prose blockquote, .prose table, .prose .highlight { margin: 0 0 1.25em; }
 .prose h2 { font-size: 1.5em; margin: 2.2em 0 .7em; scroll-margin-top: 80px; }
@@ -291,7 +291,7 @@ h1 { font-size: 2.4rem; margin: 0 0 1rem; }
 .prose blockquote p:last-child { margin-bottom: 0; }
 .prose code { font-family: var(--mono); font-size: .86em; background: var(--inline-code-bg); padding: .12em .38em; border-radius: 5px; }
 .prose .highlight pre {
-  background: var(--code-bg) !important;
+  background: var(--code-bg);
   margin: 0;
   padding: 18px 20px;
   border-radius: 12px;

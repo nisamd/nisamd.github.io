@@ -23,6 +23,7 @@
 {{ if .Store.Get "hasMath" }}
 <link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL }}">
 {{ end }}
-{{ with resources.Get "css/main.css" | minify | fingerprint }}
+{{ $css := slice (resources.Get "css/main.css") (resources.Get "css/syntax.css") | resources.Concat "css/site.css" }}
+{{ with $css | minify | fingerprint }}
 <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
 {{ end }}

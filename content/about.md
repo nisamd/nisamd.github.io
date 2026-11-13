@@ -15,4 +15,4 @@ Beyond research, this blog has room for Linux, networking, hardware experiments,
 
 ## Contact
 
-You can find me on [GitHub](https://github.com/nisamd).
+Email me at [nbr.smd@gmail.com](mailto:nbr.smd@gmail.com), or find me on [Twitter](https://x.com/NimaNotFound) and [GitHub](https://github.com/nisamd).

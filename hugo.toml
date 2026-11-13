@@ -8,6 +8,11 @@ capitalizeListTitles = false
   description = "Notes on machine learning, reinforcement learning, computer systems, and things learned along the way."
   author = "Nima Samadi"
   github = "https://github.com/nisamd"
+  twitter = "https://x.com/NimaNotFound"
+  email = "nbr.smd@gmail.com"
+
+  [params.social]
+    twitter = "NimaNotFound"  # twitter:site in link previews
 
   # Comments stay off until repoId and categoryId are filled in (see README).
   [params.giscus]
@@ -50,8 +55,7 @@ capitalizeListTitles = false
 
 [markup]
   [markup.highlight]
-    noClasses = true
-    style = "nord"
+    noClasses = false  # colors come from assets/css/syntax.css (scripts/syntax-css.sh)
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 3

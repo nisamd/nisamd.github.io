@@ -23,7 +23,7 @@ hugo new content blog/my-post/index.md
 This copies `archetypes/blog.md`. Fill in the title, description, and tags, write in Markdown, and put images next to `index.md`. New posts start as `draft: true`; drafts only show with `hugo server -D` and are never published. Remove the line when the post is ready.
 
 - **Math:** `$...$` inline and `$$...$$` display, rendered by KaTeX at build time. Number equations by hand with `\tag{1}` and refer to them as "Equation (1)".
-- **Code:** fenced code blocks with a language name get syntax highlighting.
+- **Code:** fenced code blocks with a language name get syntax highlighting, with GitHub colors in light mode and Nord in dark mode. To use other styles, run `sh scripts/syntax-css.sh <light-style> <dark-style>` ([style gallery](https://xyproto.github.io/splash/docs/)).
 - **Table of contents:** appears automatically when a post has two or more headings (`##` and `###`). Set `toc: false` to hide it.
 - **Footnotes:** `[^1]` with `[^1]: text` anywhere in the post.
 - **References and theorems:** written by hand, for example a numbered list under `## References` and `**Theorem 1.**` in bold.
