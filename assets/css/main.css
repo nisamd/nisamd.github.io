@@ -14,6 +14,8 @@
   --accent-soft: rgba(14, 124, 116, .1);
   --code-bg: #e9eeec;
   --inline-code-bg: #e5eae8;
+  --gh-open: #1a7f37;
+  --gh-done: #8250df;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -29,6 +31,8 @@
     --accent-soft: rgba(92, 197, 184, .12);
     --code-bg: #1a2327;
     --inline-code-bg: #1f2a2e;
+    --gh-open: #3fb950;
+    --gh-done: #a371f7;
     color-scheme: dark;
   }
 }
@@ -44,6 +48,8 @@
   --accent-soft: rgba(92, 197, 184, .12);
   --code-bg: #1a2327;
   --inline-code-bg: #1f2a2e;
+  --gh-open: #3fb950;
+  --gh-done: #a371f7;
   color-scheme: dark;
 }
 /* Text size buttons scale every rem on the site; 100% respects the browser's own setting. */
@@ -307,6 +313,20 @@ h1 { font-size: 2.4rem; margin: 0 0 1rem; }
 .prose .katex-display { margin: 1.4em 0; overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
 .prose .footnotes { font-size: .88em; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3em; padding-top: 1em; }
 .prose .footnotes hr { display: none; }
+
+/* GitHub issue cards (layouts/_shortcodes/github-issue.html) */
+.gh-issue { --state: var(--gh-open); margin: 0 0 1.25em; border: 1px solid var(--border); border-left: 3px solid var(--state); border-radius: 10px; background: var(--surface); font-size: .9em; line-height: 1.5; }
+.gh-issue.gh-done { --state: var(--gh-done); }
+.gh-issue.gh-dropped { --state: var(--muted); }
+.prose .gh-issue-link { display: block; padding: 14px 18px 8px; color: var(--text); text-decoration: none; }
+.gh-issue-link:hover .gh-issue-title { color: var(--accent); }
+.gh-issue-repo { display: flex; align-items: center; gap: 7px; font: .8em var(--mono); color: var(--muted); }
+.gh-issue-repo svg { width: 15px; height: 15px; color: var(--state); flex: none; }
+.gh-issue-title { display: block; margin: .3em 0; font-weight: 600; font-size: 1.05em; }
+.gh-issue-body { display: block; color: var(--muted); font-size: .92em; }
+.gh-issue-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 0 18px 14px; font: .75em var(--mono); color: var(--faint); }
+.gh-state { padding: 2px 9px; border-radius: 999px; background: var(--state); color: var(--surface); font-weight: 600; }
+.gh-label { padding: 1px 8px; border: 1px solid var(--label); border-radius: 999px; color: var(--muted); }
 
 /* ---------- Small screens ---------- */
 @media (max-width: 1060px) {

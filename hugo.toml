@@ -22,6 +22,10 @@ capitalizeListTitles = false
     category = "Announcements"
     categoryId = "DIC_kwDOVtFqzc4DLEEO"
 
+# GitHub issue cards are re-fetched after this long (Hugo caches them forever by default).
+[caches.getresource]
+  maxAge = "6h"
+
 [taxonomies]
   tag = "tags"      # blog posts
   topic = "topics"  # projects

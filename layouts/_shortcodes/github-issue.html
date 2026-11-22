@@ -1,0 +1,50 @@
+{{- /*
+  A card for a GitHub issue or pull request, fetched from the GitHub API at build time.
+  Usage: {{< github-issue "owner/repo#123" >}}
+  Falls back to a plain link if GitHub can't be reached. Set HUGO_GITHUB_TOKEN to avoid rate limits.
+*/ -}}
+{{- $ref := .Get 0 }}
+{{- $repo := index (split $ref "#") 0 }}
+{{- $num := index (split $ref "#") 1 }}
+{{- $link := printf "https://github.com/%s/issues/%s" $repo $num }}
+{{- $headers := dict "Accept" "application/vnd.github+json" }}
+{{- with os.Getenv "HUGO_GITHUB_TOKEN" }}{{ $headers = merge $headers (dict "Authorization" (printf "Bearer %s" .)) }}{{ end }}
+{{- $issue := dict }}
+{{- with try (resources.GetRemote (printf "https://api.github.com/repos/%s/issues/%s" $repo $num) (dict "headers" $headers)) }}
+  {{- with .Err }}{{ warnf "github-issue %q: %s" $ref . }}
+  {{- else with .Value }}{{ $issue = .Content | transform.Unmarshal }}
+  {{- else }}{{ warnf "github-issue %q: not found on GitHub" $ref }}
+  {{- end }}
+{{- end }}
+{{- with $issue.title }}
+{{- $state := $issue.state }}
+{{- $label := "Open" }}
+{{- if $issue.pull_request }}
+  {{- if $issue.pull_request.merged_at }}{{ $state = "done" }}{{ $label = "Merged" }}
+  {{- else if eq $state "closed" }}{{ $state = "dropped" }}{{ $label = "Closed" }}{{ end }}
+{{- else if eq $state "closed" }}
+  {{- if eq $issue.state_reason "not_planned" }}{{ $state = "dropped" }}{{ $label = "Not planned" }}
+  {{- else }}{{ $state = "done" }}{{ $label = "Closed" }}{{ end }}
+{{- end }}
+{{- $body := $issue.body | default "" | replaceRE `(?s)<!--.*?-->` "" | replaceRE "[#*_`>|\\[\\]]+" "" | replaceRE `\s+` " " | strings.TrimSpace | truncate 220 }}
+<div class="gh-issue gh-{{ $state }}">
+  <a class="gh-issue-link" href="{{ $issue.html_url }}">
+    <span class="gh-issue-repo">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.75" fill="currentColor"/></svg>
+      {{ $repo }} #{{ $issue.number }}
+    </span>
+    <span class="gh-issue-title">{{ . }}</span>
+    {{- with $body }}<span class="gh-issue-body">{{ . }}</span>{{ end }}
+  </a>
+  <div class="gh-issue-meta">
+    <span class="gh-state">{{ $label }}</span>
+    <span>@{{ $issue.user.login }} · {{ time.AsTime $issue.created_at | time.Format "2 Jan 2006" }} · {{ $issue.comments }} comment{{ if ne $issue.comments 1.0 }}s{{ end }}</span>
+    {{- range $issue.labels }}
+    {{- $c := cond (findRE `^[0-9a-fA-F]{6}$` .color) (printf "#%s" .color) "var(--faint)" }}
+    <span class="gh-label" style="--label: {{ $c | safeCSS }}">{{ .name }}</span>
+    {{- end }}
+  </div>
+</div>
+{{- else }}
+<p><a href="{{ $link }}">{{ $repo }}#{{ $num }}</a></p>
+{{- end }}

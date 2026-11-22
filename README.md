@@ -25,6 +25,7 @@ This copies `archetypes/blog.md`. Fill in the title, description, and tags, writ
 - **Math:** `$...$` inline and `$$...$$` display, rendered by KaTeX at build time. Number equations by hand with `\tag{1}` and refer to them as "Equation (1)".
 - **Code:** fenced code blocks with a language name get syntax highlighting, with GitHub colors in light mode and Nord in dark mode. To use other styles, run `sh scripts/syntax-css.sh <light-style> <dark-style>` ([style gallery](https://xyproto.github.io/splash/docs/)).
 - **Table of contents:** appears automatically when a post has two or more headings (`##` and `###`). Set `toc: false` to hide it.
+- **GitHub issues and PRs:** `{{< github-issue "owner/repo#123" >}}` on its own line shows a card with the title, state, labels, and an excerpt. It's fetched when the site builds, so it updates on each deploy. A typo in the reference prints a warning and falls back to a plain link.
 - **Footnotes:** `[^1]` with `[^1]: text` anywhere in the post.
 - **References and theorems:** written by hand, for example a numbered list under `## References` and `**Theorem 1.**` in bold.
 
